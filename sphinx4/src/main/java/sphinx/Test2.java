@@ -7,9 +7,12 @@ import java.io.InputStream;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
+import sample.Controller;
 
 public class Test2
 {
+    public static int wordCount = 0;
+
     public static void recognize(String pathname, String word)throws Exception
     {
         Configuration configuration = new Configuration();
@@ -28,7 +31,6 @@ public class Test2
 
             removeWords(word, result);
         }
-        recognizer.stopRecognition();
     }
 
     public static void removeWords(String word, SpeechResult result)
@@ -39,6 +41,7 @@ public class Test2
             while(hypothesis.contains(word))
             {
                 hypothesis = hypothesis.substring(0, hypothesis.indexOf(word)) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(word) + word.length());
+                wordCount++;
             }
             System.out.println(hypothesis);
         }

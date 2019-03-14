@@ -17,5 +17,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: edu.cmu.sphinx:sphinx4-core:5prealpha-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: edu.cmu.sphinx:sphinx4-data:5prealpha-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="SymposiumSpeechRecognizer" exported="" />
   </component>
 </module>
