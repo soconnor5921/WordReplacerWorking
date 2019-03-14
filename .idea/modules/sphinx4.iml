@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="sphinx4" external.linked.project.path="$MODULE_DIR$/../../sphinx4" external.root.project.path="$MODULE_DIR$/../../sphinx4" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../sphinx4/out/production/classes" />
+    <output-test url="file://$MODULE_DIR$/../../sphinx4/out/test/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../sphinx4">
+      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: edu.cmu.sphinx:sphinx4-core:5prealpha-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: edu.cmu.sphinx:sphinx4-data:5prealpha-SNAPSHOT" level="project" />
+  </component>
+</module>
