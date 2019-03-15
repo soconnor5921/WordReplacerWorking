@@ -30,11 +30,11 @@ public class Test2
         while ((result = recognizer.getResult()) != null) {
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
-            removeWords2(words, result);
+            removeWords(words, result);
         }
     }
 
-    public static void removeWords(String word, SpeechResult result)
+    /**public static void removeWords(String word, SpeechResult result)
     {
         String hypothesis = result.getHypothesis();
         if(hypothesis.contains(word))
@@ -50,9 +50,9 @@ public class Test2
         {
             System.out.println("The hypothesis does not contain the word " + word);
         }
-    }
+    }*/
 
-    public static void removeWords2(ArrayList<String> words, SpeechResult result)
+    public static void removeWords(ArrayList<String> words, SpeechResult result)
     {
         String hypothesis = result.getHypothesis();
         for(int i = 0; i < words.size(); i++)
