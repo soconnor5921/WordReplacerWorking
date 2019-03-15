@@ -6,9 +6,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../sphinx4">
       <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../sphinx4/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../sphinx4/out" />

@@ -3,6 +3,7 @@ package sphinx;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
@@ -13,7 +14,7 @@ public class Test2
 {
     public static int wordCount = 0;
 
-    public static void recognize(String pathname, String word)throws Exception
+    public static void recognize(String pathname, ArrayList<String> words)throws Exception
     {
         Configuration configuration = new Configuration();
 
@@ -29,7 +30,7 @@ public class Test2
         while ((result = recognizer.getResult()) != null) {
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
-            removeWords(word, result);
+            removeWords2(words, result);
         }
     }
 
@@ -48,6 +49,27 @@ public class Test2
         else
         {
             System.out.println("The hypothesis does not contain the word " + word);
+        }
+    }
+
+    public static void removeWords2(ArrayList<String> words, SpeechResult result)
+    {
+        String hypothesis = result.getHypothesis();
+        for(int i = 0; i < words.size(); i++)
+        {
+            if(hypothesis.contains(words.get(i)))
+            {
+                while(hypothesis.contains(words.get(i)))
+                {
+                    hypothesis = hypothesis.substring(0, hypothesis.indexOf(words.get(i))) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(words.get(i)) + words.get(i).length());
+                    wordCount++;
+                }
+                System.out.println(hypothesis);
+            }
+            else
+            {
+                System.out.println("The hypothesis does not contain the word " + words.get(i));
+            }
         }
     }
 }
