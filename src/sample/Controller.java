@@ -24,6 +24,7 @@ public class Controller
 
     public void callRecognizer()throws Exception
     {
+        report.setText("");
         for(int i = 0; i < listOfWords.size(); i++)
         {
             listOfWords.get(i).setCount(0);
@@ -50,7 +51,7 @@ public class Controller
         wordList.setText(list);
         wordInput.setText("");
 
-        Word newWord = new Word(word);
+        Word newWord = new Word(" "+word+" ");
 
         listOfWords.add(newWord);
     }
