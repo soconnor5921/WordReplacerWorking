@@ -20,17 +20,26 @@ public class Controller
     @FXML
     public Text wordList;
 
-    public ArrayList<String> listOfWords = new ArrayList<>();
+    public ArrayList<Word> listOfWords = new ArrayList<>();
 
     public void callRecognizer()throws Exception
     {
-        sphinx.Test2.recognize("test.wav", listOfWords);
-        updateReport("zero");
+        for(int i = 0; i < listOfWords.size(); i++)
+        {
+            listOfWords.get(i).setCount(0);
+        }
+        sphinx.Test2.recognize("test2.wav", listOfWords);
+        updateReport();
     }
 
-    public void updateReport(String word)
+    public void updateReport()
     {
-        report.setText(Test2.wordCount + " instances of the inputted words found.");
+        String newReport = "";
+        for(int i = 0; i < listOfWords.size(); i++)
+        {
+            newReport += "-" + listOfWords.get(i).getCount() + " instances of the word '" + listOfWords.get(i).getWord() + "' found.\n";
+        }
+        report.setText(newReport);
     }
 
     public void getInputtedWord()
@@ -40,7 +49,10 @@ public class Controller
         list += "\n-" + word;
         wordList.setText(list);
         wordInput.setText("");
-        listOfWords.add(word);
+
+        Word newWord = new Word(word);
+
+        listOfWords.add(newWord);
     }
 
     public void clearWordList()

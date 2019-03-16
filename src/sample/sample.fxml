@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane prefHeight="387.0" prefWidth="446.0">
          <children>
@@ -23,7 +23,7 @@
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
             </Button>
-            <Text fx:id="report" layoutX="165.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="115.13671875" />
+            <Text fx:id="report" layoutX="68.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="309.13671875" />
             <TextField fx:id="wordInput" layoutX="14.0" layoutY="121.0" />
             <Text fx:id="wordList" layoutX="282.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Of Words" wrappingWidth="84.13671875">
                <font>
