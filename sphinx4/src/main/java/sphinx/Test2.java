@@ -32,6 +32,7 @@ public class Test2
         }
     }
 
+    /**NEED TO FIX DETECTING WORDS IF THEY ARE INSIDE ANOTHER WORD*/
     public static void removeWords(ArrayList<Word> words, SpeechResult result)
     {
         String hypothesis = result.getHypothesis();
@@ -41,12 +42,12 @@ public class Test2
             currentWord = words.get(i).getWord();
             if(hypothesis.contains(currentWord))
             {
-               while(hypothesis.contains(currentWord))
-               {
-                   hypothesis = hypothesis.substring(0, hypothesis.indexOf(currentWord)) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(currentWord) + currentWord.length());
-                   words.get(i).addOneToCount();
-               }
-               System.out.println(hypothesis);
+                while(hypothesis.contains(currentWord))
+                {
+                    hypothesis = hypothesis.substring(0, hypothesis.indexOf(currentWord)) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(currentWord) + currentWord.length());
+                    words.get(i).addOneToCount();
+                }
+                System.out.println(hypothesis);
             }
             else
             {
@@ -54,6 +55,4 @@ public class Test2
             }
         }
     }
-
-
 }

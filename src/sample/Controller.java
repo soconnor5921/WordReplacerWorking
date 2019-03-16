@@ -51,7 +51,7 @@ public class Controller
         wordList.setText(list);
         wordInput.setText("");
 
-        Word newWord = new Word(" "+word+" ");
+        Word newWord = new Word(word);
 
         listOfWords.add(newWord);
     }
