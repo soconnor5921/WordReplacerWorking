@@ -34,6 +34,7 @@ public class Test2
         }
     }
 
+    /** FIX ACCURACY PROBLEMS WITH WORD RESULT */
     public static void findWords(ArrayList<Word> words, SpeechResult result)
     {
         for (WordResult r : result.getWords())
