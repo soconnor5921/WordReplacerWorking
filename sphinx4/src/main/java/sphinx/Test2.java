@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
@@ -37,6 +38,7 @@ public class Test2
     {
         for (WordResult r : result.getWords())
         {
+            System.out.println(r);
             for(int i = 0; i < words.size(); i++)
             {
                 if(words.get(i).getWord().equalsIgnoreCase(r.getWord().getSpelling()))
