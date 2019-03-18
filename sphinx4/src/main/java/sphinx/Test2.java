@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
+import edu.cmu.sphinx.result.WordResult;
 import sample.Word;
 
 public class Test2
@@ -28,31 +29,45 @@ public class Test2
         while ((result = recognizer.getResult()) != null) {
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
-            removeWords(words, result);
+            findWords(words, result);
         }
     }
 
-    /**NEED TO FIX DETECTING WORDS IF THEY ARE INSIDE ANOTHER WORD*/
-    public static void removeWords(ArrayList<Word> words, SpeechResult result)
+    public static void findWords(ArrayList<Word> words, SpeechResult result)
     {
-        String hypothesis = result.getHypothesis();
-        String currentWord;
-        for(int i = 0; i < words.size(); i++)
+        for (WordResult r : result.getWords())
         {
-            currentWord = words.get(i).getWord();
-            if(hypothesis.contains(currentWord))
+            for(int i = 0; i < words.size(); i++)
             {
-                while(hypothesis.contains(currentWord))
+                if(words.get(i).getWord().equalsIgnoreCase(r.getWord().getSpelling()))
                 {
-                    hypothesis = hypothesis.substring(0, hypothesis.indexOf(currentWord)) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(currentWord) + currentWord.length());
                     words.get(i).addOneToCount();
                 }
-                System.out.println(hypothesis);
-            }
-            else
-            {
-                System.out.println("The hypothesis does not contain the word " + words.get(i).getWord());
             }
         }
     }
+
+    /**
+     public static void removeWords(ArrayList<Word> words, SpeechResult result)
+     {
+     String hypothesis = result.getHypothesis();
+     String currentWord;
+     for(int i = 0; i < words.size(); i++)
+     {
+     currentWord = words.get(i).getWord();
+     if(hypothesis.contains(currentWord))
+     {
+     while(hypothesis.contains(currentWord))
+     {
+     hypothesis = hypothesis.substring(0, hypothesis.indexOf(currentWord)) + "REDACTED" + hypothesis.substring(hypothesis.indexOf(currentWord) + currentWord.length());
+     words.get(i).addOneToCount();
+     }
+     System.out.println(hypothesis);
+     }
+     else
+     {
+     System.out.println("The hypothesis does not contain the word " + words.get(i).getWord());
+     }
+     }
+     }*/
 }
