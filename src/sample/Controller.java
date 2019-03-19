@@ -41,9 +41,9 @@ public class Controller
     private FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV Files (*.wav)", "*.wav");
     private String filePath;
     private MediaPlayer mediaPlayer;
+    private Duration length;
     private boolean isPlaying = false;
     private boolean paused = false;
-    private Duration length;
 
     public void callRecognizer()throws Exception
     {
