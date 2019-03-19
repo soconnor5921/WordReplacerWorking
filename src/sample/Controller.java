@@ -17,22 +17,16 @@ public class Controller
 {
     @FXML
     public Text report;
-
     @FXML
     public TextField wordInput;
-
     @FXML
     public Text wordList;
-
     @FXML
     public Label fileLabel;
-
     @FXML
     public Button playAudio;
-
     @FXML
     public Button pauseButton;
-
     @FXML
     public Button stopButton;
 
