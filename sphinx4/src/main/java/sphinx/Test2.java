@@ -30,19 +30,20 @@ public class Test2
         while ((result = recognizer.getResult()) != null) {
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
+            //findWords(words, result);
             findWords(words, result);
         }
     }
 
-    /** FIX ACCURACY PROBLEMS WITH WORD RESULT */
     public static void findWords(ArrayList<Word> words, SpeechResult result)
     {
-        for (WordResult r : result.getWords())
+        String hypothesis = result.getHypothesis();
+        String[] allWords = hypothesis.split(" ");
+        for(int i = 0; i < words.size(); i++)
         {
-            System.out.println(r);
-            for(int i = 0; i < words.size(); i++)
+            for(int j = 0; j < allWords.length; j++)
             {
-                if(words.get(i).getWord().equalsIgnoreCase(r.getWord().getSpelling()))
+                if(words.get(i).getWord().equalsIgnoreCase(allWords[j]))
                 {
                     words.get(i).addOneToCount();
                 }
