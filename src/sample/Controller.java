@@ -2,9 +2,11 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import sphinx.Test2;
 
 import java.io.File;
@@ -22,7 +24,13 @@ public class Controller
     @FXML
     public Text wordList;
 
-    public ArrayList<Word> listOfWords = new ArrayList<>();
+    @FXML
+    public Label fileLabel;
+
+    private ArrayList<Word> listOfWords = new ArrayList<>();
+    private FileChooser fileChooser = new FileChooser();
+    private FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV Files (*.wav)", "*.wav");
+    private String filePath;
 
     public void callRecognizer()throws Exception
     {
@@ -31,11 +39,11 @@ public class Controller
         {
             listOfWords.get(i).setCount(0);
         }
-        sphinx.Test2.recognize("test2.wav", listOfWords);
+        sphinx.Test2.recognize(filePath, listOfWords);
         updateReport();
     }
 
-    public void updateReport()
+    private void updateReport()
     {
         String newReport = "";
         for(int i = 0; i < listOfWords.size(); i++)
@@ -62,6 +70,14 @@ public class Controller
     {
         wordList.setText("List Of Words");
         listOfWords.clear();
+    }
+
+    public void openFileChooser()
+    {
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        fileLabel.setText(selectedFile.getPath());
+        filePath = selectedFile.getPath();
     }
 
 }
