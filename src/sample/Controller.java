@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import sphinx.Test2;
 
 import java.io.File;
+import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,20 @@ public class Controller
     @FXML
     public Button playAudio;
 
+    @FXML
+    public Button pauseButton;
+
+    @FXML
+    public Button stopButton;
+
     private ArrayList<Word> listOfWords = new ArrayList<>();
     private FileChooser fileChooser = new FileChooser();
     private FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV Files (*.wav)", "*.wav");
     private String filePath;
+    private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+    private boolean paused = false;
+    private Duration length;
 
     public void callRecognizer()throws Exception
     {
@@ -84,12 +95,41 @@ public class Controller
         fileLabel.setText(selectedFile.getPath());
         filePath = selectedFile.getPath();
         playAudio.setVisible(true);
+        pauseButton.setVisible(true);
+        stopButton.setVisible(true);
     }
 
     public void playAudio()
     {
         Media audio = new Media(new File(filePath).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(audio);
-        mediaPlayer.play();
+        mediaPlayer = new MediaPlayer(audio);
+        isPlaying = true;
+        if(paused)
+        {
+            mediaPlayer.seek(length);
+            paused = false;
+        }
+        else
+        {
+            mediaPlayer.play();
+        }
+    }
+
+    public void pauseAudio()
+    {
+        if(isPlaying)
+        {
+            mediaPlayer.pause();
+            length = mediaPlayer.getCurrentTime();
+            paused = true;
+        }
+    }
+
+    public void stopAudio()
+    {
+        if(isPlaying)
+        {
+            mediaPlayer.stop();
+        }
     }
 }
