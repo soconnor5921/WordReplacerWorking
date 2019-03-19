@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,6 +28,9 @@ public class Controller
 
     @FXML
     public Label fileLabel;
+
+    @FXML
+    public Button playAudio;
 
     private ArrayList<Word> listOfWords = new ArrayList<>();
     private FileChooser fileChooser = new FileChooser();
@@ -78,6 +83,14 @@ public class Controller
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         fileLabel.setText(selectedFile.getPath());
         filePath = selectedFile.getPath();
+        playAudio.setVisible(true);
+    }
+
+    public void playAudio()
+    {
+        Media audio = new Media(new File(filePath).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(audio);
+        mediaPlayer.play();
     }
 
 }

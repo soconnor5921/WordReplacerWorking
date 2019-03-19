@@ -35,6 +35,7 @@
             <Button layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#clearWordList" text="Clear Word List" />
             <Button fx:id="chooseFile" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="25.0" prefWidth="115.0" text="Pick An Audio File" />
             <Label fx:id="fileLabel" layoutX="14.0" layoutY="99.0" prefHeight="17.0" prefWidth="215.0" />
+            <Button fx:id="playAudio" layoutX="137.0" layoutY="65.0" mnemonicParsing="false" onAction="#playAudio" text="Play" visible="false" />
          </children>
       </Pane>
    </children>
