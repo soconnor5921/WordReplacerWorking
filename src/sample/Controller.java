@@ -9,12 +9,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import sphinx.Test2;
-
 import java.io.File;
 import javafx.util.Duration;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Controller
 {
