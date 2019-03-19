@@ -106,7 +106,8 @@ public class Controller
         isPlaying = true;
         if(paused)
         {
-            mediaPlayer.seek(length);
+            mediaPlayer.setStartTime(length);
+            mediaPlayer.play();
             paused = false;
         }
         else
