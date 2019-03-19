@@ -130,6 +130,7 @@ public class Controller
         if(isPlaying)
         {
             mediaPlayer.stop();
+            isPlaying = false;
         }
     }
 }
