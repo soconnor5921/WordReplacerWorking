@@ -46,7 +46,6 @@ public class Test2
                 if(words.get(i).getWord().equalsIgnoreCase(allWords[j]))
                 {
                     words.get(i).addOneToCount();
-                    words.get(i).setIndexInHypothesis(j);
                 }
             }
         }
