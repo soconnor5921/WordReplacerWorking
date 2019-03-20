@@ -3,6 +3,7 @@ package sphinx;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import sample.Word;
 
 public class Test2
 {
+    public static ArrayList<String> timeFrames = new ArrayList<>();
     public static void recognize(String pathname, ArrayList<Word> words)throws Exception
     {
         Configuration configuration = new Configuration();
@@ -31,14 +33,16 @@ public class Test2
         while ((result = recognizer.getResult()) != null) {
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
-            findWords(words, result);
+            ArrayList<Integer> indexes = findWords(words, result);
+            getTimeFrames(indexes, result);
         }
     }
 
-    public static void findWords(ArrayList<Word> words, SpeechResult result)
+    public static ArrayList<Integer> findWords(ArrayList<Word> words, SpeechResult result)
     {
         String hypothesis = result.getHypothesis();
         String[] allWords = hypothesis.split(" ");
+        ArrayList<Integer> indexes = new ArrayList<>();
         for(int i = 0; i < words.size(); i++)
         {
             for(int j = 0; j < allWords.length; j++)
@@ -46,8 +50,23 @@ public class Test2
                 if(words.get(i).getWord().equalsIgnoreCase(allWords[j]))
                 {
                     words.get(i).addOneToCount();
+                    indexes.add(j);
                 }
             }
+        }
+        return indexes;
+    }
+
+    public static void getTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
+    {
+        ArrayList<TimeFrame> allTimeFrames = new ArrayList<>();
+        for(WordResult r : result.getWords())
+        {
+            allTimeFrames.add(r.getTimeFrame());
+        }
+        for(int i = 0; i < indexes.size(); i++)
+        {
+            timeFrames.add(allTimeFrames.get(indexes.get(i)).toString());
         }
     }
 }
