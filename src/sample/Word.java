@@ -2,8 +2,9 @@ package sample;
 
 public class Word
 {
-    String word;
-    int count;
+    private String word;
+    private int count;
+    private int indexInHypothesis;
 
     public Word(String word)
     {
@@ -26,4 +27,8 @@ public class Word
     {
         count++;
     }
+
+    public void setIndexInHypothesis(int num){indexInHypothesis = num;}
+
+    public int getIndexInHypothesis(){return indexInHypothesis;}
 }
