@@ -36,7 +36,7 @@ public class Controller
     public Button censorAudio;
 
     private ArrayList<Word> listOfWords = new ArrayList<>();
-    private ArrayList<String> timeFrames2 = new ArrayList<>();
+    private ArrayList<String> timeFrames = new ArrayList<>();
     private FileChooser fileChooser = new FileChooser();
     private FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV Files (*.wav)", "*.wav");
     private String filePath;
@@ -45,7 +45,6 @@ public class Controller
     private Duration length;
     private boolean isPlaying = false;
     private boolean paused = false;
-
     public void callRecognizer()throws Exception
     {
         report.setText("");
@@ -85,7 +84,7 @@ public class Controller
     {
         wordList.setText("List Of Words");
         listOfWords.clear();
-        timeFrames2.clear();
+        timeFrames.clear();
     }
 
     public void openFileChooser()
@@ -108,14 +107,11 @@ public class Controller
             mediaPlayer.setStartTime(length);
             mediaPlayer.play();
             paused = false;
-
-            trackTime();
         }
         else if(!isPlaying)
         {
             mediaPlayer.play();
-
-            trackTime();
+            mediaPlayer.setOnEndOfMedia(this::stopAudio);
         }
         isPlaying = true;
     }
@@ -136,43 +132,55 @@ public class Controller
         {
             mediaPlayer.stop();
             isPlaying = false;
+            paused = false;
         }
     }
+
+    /**
 
     public void playCensorSound()
     {
         Media audio = new Media(new File("censor.wav").toURI().toString());
         mediaPlayer2 = new MediaPlayer(audio);
-        if(isPlaying)
-        {
-            pauseAudio();
-            mediaPlayer2.play();
-        }
-        else
-        {
-            mediaPlayer2.play();
-        }
-        mediaPlayer2.setOnEndOfMedia(this::playAudio);
+        mediaPlayer2.play();
+        mediaPlayer2.setOnEndOfMedia(this::setNextStartTime);
     }
 
-    public void censorWords()
+    public void createTimeFrameList()
     {
         ArrayList<String> timeFrames = Test2.timeFrames;
         for(int i = 0; i < timeFrames.size(); i++)
         {
-            timeFrames2.add(timeFrames.get(i).split(":")[0]);
-            timeFrames2.add(timeFrames.get(i).split(":")[1]);
+            this.timeFrames.add(timeFrames.get(i).split(":")[0]);
+            this.timeFrames.add(timeFrames.get(i).split(":")[1]);
         }
 
     }
 
-    public void trackTime()
+    public void playCensoredAudio()
     {
-        double currentTime;
-        while(isPlaying)
-        {
-            currentTime = mediaPlayer.getCurrentTime().toMillis();
-            System.out.println(currentTime);
-        }
+        Media audio = new Media(new File(filePath).toURI().toString());
+        mediaPlayer = new MediaPlayer(audio);
+
+        Duration duration = new Duration(2000);
+        mediaPlayer.setStopTime(duration);
+
+        mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(this::playCensorSound);
     }
+
+    public void playAudioFromPoint(Duration start)
+    {
+        Media audio = new Media(new File(filePath).toURI().toString());
+        mediaPlayer = new MediaPlayer(audio);
+        mediaPlayer.seek(start);
+    }
+
+    public void setNextStartTime()
+    {
+        Duration duration = new Duration(5000);
+        mediaPlayer.setStartTime(duration);
+        playCensoredAudio();
+    }
+     */
 }
