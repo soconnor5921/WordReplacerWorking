@@ -36,15 +36,15 @@ public class Controller
     public Button censorAudio;
 
     private ArrayList<Word> listOfWords = new ArrayList<>();
+    private ArrayList<String> timeFrames2 = new ArrayList<>();
     private FileChooser fileChooser = new FileChooser();
     private FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV Files (*.wav)", "*.wav");
     private String filePath;
-    private MediaPlayer mediaPlayer;
-    private MediaPlayer mediaPlayer2;
+    private static MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer2;
     private Duration length;
     private boolean isPlaying = false;
     private boolean paused = false;
-    private boolean censored = false;
 
     public void callRecognizer()throws Exception
     {
@@ -85,6 +85,7 @@ public class Controller
     {
         wordList.setText("List Of Words");
         listOfWords.clear();
+        timeFrames2.clear();
     }
 
     public void openFileChooser()
@@ -102,21 +103,21 @@ public class Controller
     {
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
-        isPlaying = true;
         if(paused)
         {
             mediaPlayer.setStartTime(length);
             mediaPlayer.play();
             paused = false;
+
+            trackTime();
         }
-        else
+        else if(!isPlaying)
         {
             mediaPlayer.play();
-            if(censored)
-            {
-                censor2();
-            }
+
+            trackTime();
         }
+        isPlaying = true;
     }
 
     public void pauseAudio()
@@ -138,23 +139,40 @@ public class Controller
         }
     }
 
-    public void censor()
+    public void playCensorSound()
     {
-        censored = true;
+        Media audio = new Media(new File("censor.wav").toURI().toString());
+        mediaPlayer2 = new MediaPlayer(audio);
+        if(isPlaying)
+        {
+            pauseAudio();
+            mediaPlayer2.play();
+        }
+        else
+        {
+            mediaPlayer2.play();
+        }
+        mediaPlayer2.setOnEndOfMedia(this::playAudio);
     }
 
-    public void censor2()
+    public void censorWords()
     {
         ArrayList<String> timeFrames = Test2.timeFrames;
-        String[] temp;
-        Media audio = new Media(new File("dolphin-censor.mp3").toURI().toString());
-        mediaPlayer2 = new MediaPlayer(audio);
         for(int i = 0; i < timeFrames.size(); i++)
         {
-            temp = timeFrames.get(i).split(":");
-            Duration newDuration = new Duration(Double.valueOf(temp[0]));
-            mediaPlayer.setStopTime(newDuration);
-            mediaPlayer2.play();
+            timeFrames2.add(timeFrames.get(i).split(":")[0]);
+            timeFrames2.add(timeFrames.get(i).split(":")[1]);
+        }
+
+    }
+
+    public void trackTime()
+    {
+        double currentTime;
+        while(isPlaying)
+        {
+            currentTime = mediaPlayer.getCurrentTime().toMillis();
+            System.out.println(currentTime);
         }
     }
 }

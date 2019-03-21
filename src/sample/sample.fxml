@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane prefHeight="463.0" prefWidth="572.0">
          <children>
@@ -38,7 +38,7 @@
             <Button fx:id="playAudio" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" onAction="#playAudio" text="Play" visible="false" />
             <Button fx:id="pauseButton" layoutX="62.0" layoutY="92.0" mnemonicParsing="false" onAction="#pauseAudio" text="Pause" visible="false" />
             <Button fx:id="stopButton" layoutX="118.0" layoutY="92.0" mnemonicParsing="false" onAction="#stopAudio" text="Stop" visible="false" />
-            <Button fx:id="censorAudio" layoutX="8.0" layoutY="290.0" mnemonicParsing="false" onAction="#censor" text="Censor Audio" visible="false" />
+            <Button fx:id="censorAudio" layoutX="8.0" layoutY="290.0" mnemonicParsing="false" onAction="#censorWords" text="Censor Audio" />
          </children>
       </Pane>
    </children>
