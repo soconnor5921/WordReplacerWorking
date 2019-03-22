@@ -54,7 +54,7 @@ public class Controller
         }
         sphinx.Test2.recognize(filePath, listOfWords);
         updateReport();
-        censorAudio.setVisible(true);
+        //censorAudio.setVisible(true);
     }
 
     private void updateReport()
