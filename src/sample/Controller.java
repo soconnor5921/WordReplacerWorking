@@ -47,14 +47,17 @@ public class Controller
     private boolean paused = false;
     public void callRecognizer()throws Exception
     {
-        report.setText("");
-        for(int i = 0; i < listOfWords.size(); i++)
+        if(mediaPlayer != null)
         {
-            listOfWords.get(i).setCount(0);
+            report.setText("");
+            for (int i = 0; i < listOfWords.size(); i++)
+            {
+                listOfWords.get(i).setCount(0);
+            }
+            sphinx.Test2.recognize(filePath, listOfWords);
+            updateReport();
+            //censorAudio.setVisible(true);
         }
-        sphinx.Test2.recognize(filePath, listOfWords);
-        updateReport();
-        //censorAudio.setVisible(true);
     }
 
     private void updateReport()
