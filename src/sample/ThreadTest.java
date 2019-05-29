@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ThreadTest extends Thread
 {
     private ArrayList<String> timeFrames;
+    private boolean isPlaying = false;
     private String filePath;
     private MediaPlayer mediaPlayer;
 
@@ -23,6 +24,8 @@ public class ThreadTest extends Thread
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
         mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(this::stopAudio);
+        isPlaying = true;
         System.out.println("The audio is playing");
     }
 
@@ -30,6 +33,16 @@ public class ThreadTest extends Thread
     public void setFilePath(String path)
     {
         filePath = path;
+    }
+
+    private void stopAudio()
+    {
+        if(isPlaying)
+        {
+            mediaPlayer.stop();
+            isPlaying = false;
+            System.out.println("The audio is not playing");
+        }
     }
 
 }
