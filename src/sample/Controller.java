@@ -45,6 +45,9 @@ public class Controller
     private Duration length;
     private boolean isPlaying = false;
     private boolean paused = false;
+
+    private ThreadTest thread = new ThreadTest(timeFrames);
+
     public void callRecognizer()throws Exception
     {
         report.setText("");
@@ -54,7 +57,7 @@ public class Controller
         }
         sphinx.Test2.recognize(filePath, listOfWords);
         updateReport();
-        //censorAudio.setVisible(true);
+        censorAudio.setVisible(true);
     }
 
     private void updateReport()
@@ -93,6 +96,9 @@ public class Controller
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         fileLabel.setText(selectedFile.getPath());
         filePath = selectedFile.getPath();
+
+        thread.setFilePath(filePath);
+
         playAudio.setVisible(true);
         pauseButton.setVisible(true);
         stopButton.setVisible(true);
@@ -102,6 +108,7 @@ public class Controller
     {
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
+
         if(paused)
         {
             mediaPlayer.setStartTime(length);
@@ -134,6 +141,23 @@ public class Controller
             isPlaying = false;
             paused = false;
         }
+    }
+
+
+    public void playCensoredAudio()
+    {
+        /*Media audio = new Media(new File(filePath).toURI().toString());
+        mediaPlayer = new MediaPlayer(audio);
+        if(!isPlaying)
+        {
+            thread.setPlaying(true);
+            thread.start();
+
+            mediaPlayer.play();
+            mediaPlayer.setOnEndOfMedia(this::stopAudio);
+            isPlaying = true;
+        }*/
+        thread.start();
     }
 
     /**

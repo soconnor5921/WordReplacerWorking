@@ -24,8 +24,6 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
-        ThreadTest obj = new ThreadTest();
-        obj.start();
         launch(args);
     }
 }
