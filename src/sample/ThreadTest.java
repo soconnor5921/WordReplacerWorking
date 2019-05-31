@@ -21,6 +21,12 @@ public class ThreadTest extends Thread
 
     public void run()
     {
+        timeFrames = Test2.timeFrames;
+        for(int i = 0; i < timeFrames.size(); i++)
+        {
+            System.out.println(timeFrames.get(i));
+        }
+
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
         mediaPlayer.play();
