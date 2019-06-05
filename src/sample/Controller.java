@@ -88,6 +88,7 @@ public class Controller
         wordList.setText("List Of Words");
         listOfWords.clear();
         timeFrames.clear();
+        thread.clearTimeFrames();
     }
 
     public void openFileChooser()

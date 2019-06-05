@@ -51,4 +51,9 @@ public class ThreadTest extends Thread
         }
     }
 
+    public void clearTimeFrames()
+    {
+        timeFrames.clear();
+    }
+
 }
