@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import sphinx.Test;
 import sphinx.Test2;
 
 import java.io.File;
@@ -21,7 +22,15 @@ public class ThreadTest extends Thread
 
     public void run()
     {
-        timeFrames = Test2.timeFrames;
+        if(timeFrames.size() > 0)
+        {
+            timeFrames.clear();
+        }
+        //timeFrames = Test2.timeFrames;
+        for(int i = 0; i < Test2.timeFrames.size(); i++)
+        {
+            timeFrames.add(Test2.timeFrames.get(i));
+        }
         for(int i = 0; i < timeFrames.size(); i++)
         {
             System.out.println(timeFrames.get(i));
@@ -51,9 +60,9 @@ public class ThreadTest extends Thread
         }
     }
 
-    public void clearTimeFrames()
+    //public void clearTimeFrames()
     {
-        timeFrames.clear();
+        //timeFrames.clear();
     }
 
 }

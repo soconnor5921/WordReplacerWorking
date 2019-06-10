@@ -50,6 +50,7 @@ public class Controller
 
     public void callRecognizer()throws Exception
     {
+        Test2.timeFrames.clear();
         report.setText("");
         for (int i = 0; i < listOfWords.size(); i++)
         {
@@ -88,7 +89,7 @@ public class Controller
         wordList.setText("List Of Words");
         listOfWords.clear();
         timeFrames.clear();
-        thread.clearTimeFrames();
+        Test2.timeFrames.clear();
     }
 
     public void openFileChooser()
@@ -158,7 +159,7 @@ public class Controller
             mediaPlayer.setOnEndOfMedia(this::stopAudio);
             isPlaying = true;
         }*/
-        thread.start();
+        thread.run();
     }
 
     /**
