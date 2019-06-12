@@ -17,6 +17,7 @@ import sample.Word;
 public class Test2
 {
     public static ArrayList<String> timeFrames = new ArrayList<>();
+    public static ArrayList<TimeFrame> allTimeFrames = new ArrayList<>();
     public static void recognize(String pathname, ArrayList<Word> words)throws Exception
     {
         Configuration configuration = new Configuration();
@@ -59,7 +60,7 @@ public class Test2
 
     public static void getTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
     {
-        ArrayList<TimeFrame> allTimeFrames = new ArrayList<>();
+        //ArrayList<TimeFrame> allTimeFrames = new ArrayList<>();
         for(WordResult r : result.getWords())
         {
             allTimeFrames.add(r.getTimeFrame());

@@ -11,7 +11,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import javafx.util.Duration;
-import sphinx.Test;
 import sphinx.Test2;
 
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class Controller
         String newReport = "";
         for(int i = 0; i < listOfWords.size(); i++)
         {
-            newReport += "-" + listOfWords.get(i).getCount() + " instances of the word '" + listOfWords.get(i).getWord() + "' found.\n";
+            newReport += "" + listOfWords.get(i).getCount() + " instances of the word '" + listOfWords.get(i).getWord() + "' found.\n";
         }
         report.setText(newReport);
     }
@@ -75,7 +74,7 @@ public class Controller
     {
         String word = wordInput.getText();
         String list = wordList.getText();
-        list += "\n-" + word;
+        list += "\n" + word;
         wordList.setText(list);
         wordInput.setText("");
 
