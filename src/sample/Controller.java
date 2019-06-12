@@ -50,6 +50,7 @@ public class Controller
     public void callRecognizer()throws Exception
     {
         Test2.timeFrames.clear();
+        thread.clearNum();
         report.setText("");
         for (int i = 0; i < listOfWords.size(); i++)
         {

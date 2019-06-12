@@ -22,6 +22,7 @@ public class ThreadTest extends Thread
     private MediaPlayer mediaPlayer;
     private MediaPlayer censor;
     private Duration time;
+    private int num = -1;
 
     public ThreadTest(ArrayList<String> timeFrames)
     {
@@ -52,35 +53,14 @@ public class ThreadTest extends Thread
         getTimeList();
 
         mediaPlayer.play();
-        mediaPlayer.setOnEndOfMedia(this::stopAudio);
+        mediaPlayer.setOnEndOfMedia(this::censor);
         isPlaying = true;
         System.out.println("The audio is playing");
 
-        while(isPlaying)
+        for(int i = 0; i < endTimes.size(); i++)
         {
-            /*time = new Duration(startTimes.get(0));
-            //if(mediaPlayer.getCurrentTime().equals(new Duration(startTimes.get(0))))
-            if(mediaPlayer.getCurrentTime().compareTo(new Duration(startTimes.get(0).doubleValue())) == 0)
-            {
-                stopAudio();
-                censor.play();
-                censor.setOnEndOfMedia(() -> {
-                    censor.stop();
-                    continueAudio(new Duration(endTimes.get(0)));
-                });
-            }
-            startTimes.remove(0);
-            endTimes.remove(0);*/
-
-        }
-        for(int i = 0; i < startTimes.size(); i++)
-        {
-            mediaPlayer.setStopTime(new Duration(startTimes.get(i)));
-        }
-
-        for(int i = 0; i < startTimes.size(); i++)
-        {
-            System.out.println(startTimes.get(i));
+            num++;
+            mediaPlayer.setStopTime(new Duration(endTimes.get(i)));
         }
     }
 
@@ -112,10 +92,24 @@ public class ThreadTest extends Thread
         }
     }
 
-    public void continueAudio(Duration seek)
+    public void censor()
     {
-        mediaPlayer.seek(seek);
+        censor.play();
+        censor.setOnEndOfMedia(this::continueCensor);
+    }
+
+    public void continueCensor()
+    {
+        Media audio = new Media(new File(filePath).toURI().toString());
+        mediaPlayer = new MediaPlayer(audio);
+        //mediaPlayer.seek(new Duration(endTimes.get(0) + 1000));
+        mediaPlayer.setStartTime(new Duration(endTimes.get(num) + 1000));
         mediaPlayer.play();
+    }
+
+    public void clearNum()
+    {
+        num = -1;
     }
 
 }
