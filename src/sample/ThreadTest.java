@@ -53,11 +53,20 @@ public class ThreadTest extends Thread
         getTimeList();
 
         mediaPlayer.play();
-        mediaPlayer.setOnEndOfMedia(this::censor);
+
+        if(startTimes.size() > 0)
+        {
+            mediaPlayer.setOnEndOfMedia(this::censor);
+        }
+        else
+        {
+            mediaPlayer.setOnEndOfMedia(this::stopAudio);
+        }
+
         isPlaying = true;
         System.out.println("The audio is playing");
 
-        for(int i = 0; i < endTimes.size(); i++)
+        for(int i = 0; i < startTimes.size(); i++)
         {
             num++;
             mediaPlayer.setStopTime(new Duration(startTimes.get(i)));
@@ -102,7 +111,6 @@ public class ThreadTest extends Thread
     {
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
-        //mediaPlayer.seek(new Duration(endTimes.get(0) + 1000));
         mediaPlayer.setStartTime(new Duration(endTimes.get(num)));
         mediaPlayer.play();
     }
