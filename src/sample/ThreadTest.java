@@ -60,7 +60,7 @@ public class ThreadTest extends Thread
         for(int i = 0; i < endTimes.size(); i++)
         {
             num++;
-            mediaPlayer.setStopTime(new Duration(endTimes.get(i)));
+            mediaPlayer.setStopTime(new Duration(startTimes.get(i)));
         }
     }
 
@@ -103,7 +103,7 @@ public class ThreadTest extends Thread
         Media audio = new Media(new File(filePath).toURI().toString());
         mediaPlayer = new MediaPlayer(audio);
         //mediaPlayer.seek(new Duration(endTimes.get(0) + 1000));
-        mediaPlayer.setStartTime(new Duration(endTimes.get(num) + 1000));
+        mediaPlayer.setStartTime(new Duration(endTimes.get(num)));
         mediaPlayer.play();
     }
 

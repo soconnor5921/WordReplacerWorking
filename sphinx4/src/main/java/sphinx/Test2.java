@@ -35,7 +35,7 @@ public class Test2
             System.out.format("Hypothesis: %s\n", result.getHypothesis());
 
             ArrayList<Integer> indexes = findWords(words, result);
-            getTimeFrames(indexes, result);
+            printTimeFrames(indexes, result);
         }
     }
 
@@ -68,6 +68,32 @@ public class Test2
         for(int i = 0; i < indexes.size(); i++)
         {
             timeFrames.add(allTimeFrames.get(indexes.get(i)).toString());
+            System.out.println(timeFrames.get(i));
         }
+        //printTimeFrames(result);
+    }
+
+    public static void printTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
+    {
+        List<WordResult> list = result.getWords();
+        for(int i = 0; i < list.size(); i++)
+        {
+            String str = list.get(i).toString();
+            if(str.substring(1,6).equals("<sil>") || str.substring(1,9).equals("[SPEECH]"))
+            {
+                list.remove(i);
+                i--;
+            }
+            else
+            {
+                System.out.println(list.get(i).toString());
+            }
+        }
+        for(int i = 0; i < indexes.size(); i++)
+        {
+            timeFrames.add(list.get(indexes.get(i)).getTimeFrame().toString());
+            System.out.println(timeFrames.get(i));
+        }
+
     }
 }
