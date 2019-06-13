@@ -58,7 +58,7 @@ public class Test2
         return indexes;
     }
 
-    public static void getTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
+    /*public static void getTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
     {
         //ArrayList<TimeFrame> allTimeFrames = new ArrayList<>();
         for(WordResult r : result.getWords())
@@ -71,7 +71,7 @@ public class Test2
             System.out.println(timeFrames.get(i));
         }
         //printTimeFrames(result);
-    }
+    }*/
 
     public static void printTimeFrames(ArrayList<Integer> indexes, SpeechResult result)
     {
